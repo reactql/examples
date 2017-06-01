@@ -1,3 +1,5 @@
+<img src="https://reactql.org/docs/images/reactql-logo.svg" alt="ReactQL" width="278" height="77" />
+
 # ReactQL - example projects
 
 [ReactQL](https://github.com/reactql/cli) is a starter kit for building React + GraphQL front-ends.
