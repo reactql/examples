@@ -4,7 +4,7 @@
 
 [ReactQL](https://github.com/reactql/cli) is a starter kit for building React + GraphQL front-ends.
 
-It comes in [Javascript](https://github.com/reactql/kit) and [Typescript](https://github.com/reactql/kit.ts) flavours.
+It comes in [Javascript](https://github.com/reactql/kit) and [Typescript](https://github.com/reactql/kit.ts) flavours, and has a [CLI tool](https://github.com/reactql/cli) for quickly spawning new projects on Windows, Mac or Linux.
 
 It features a universal code base, that runs both in the browser and server-side, and offers a built-in web server with [server-side rendering](https://reactql.org/docs/ssr).
 
