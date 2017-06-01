@@ -12,6 +12,14 @@ This flexibility makes the kit ideal for a variety of use cases -- from building
 
 This repo features a growing list of runnable examples to demonstrate how ReactQL can be used.
 
+## Projects
+
+Current example projects:
+
+### [GraphQL Server (graphql-server)](https://github.com/reactql/examples/blob/master/graphql-server)
+
+Swaps out the [Graphcool](https://graph.cool) service for your own GraphQL server, running alongside the built-in Koa web server. Demonstrates a monolithic application, where the GraphQL endpoint 'lives' next to your front-end code.
+
 ## How to run
 
 Each project appears in its own folder.
