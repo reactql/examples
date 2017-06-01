@@ -4,7 +4,7 @@
 
 It comes in [Javascript](https://github.com/reactql/kit) and [Typescript](https://github.com/reactql/kit.ts) flavours.
 
-It features a universal code base, that runs both in the browser and server-side, and offers a built-in web server with server-side rendering.
+It features a universal code base, that runs both in the browser and server-side, and offers a built-in web server with [server-side rendering](https://reactql.org/docs/ssr).
 
 This flexibility makes the kit ideal for a variety of use cases -- from building rich, single page web and mobile apps, to running your own GraphQL server from the same code base.
 
