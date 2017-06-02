@@ -16,7 +16,7 @@ In this project, we yank GraphQL and add a quick 'to-do list' example that store
 
 All of the pieces are already in place, whether or not you use GraphQL -- we've just added a sample `todo` reducer to handle our to-dos.
 
-If you run the server example ([http://localhost:8081](http://localhost:8081)), you'll see that a to-do has been added for yo.
+If you run the server example ([http://localhost:8081](http://localhost:8081)), you'll see that a to-do has been added for you.
 
 This demonstrates the flexibility of updating state on the server, and 'inheriting' that state automatically in the browser.
 

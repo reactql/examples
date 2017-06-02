@@ -11,5 +11,5 @@ We welcome PRs.
 * Update `README.md` on the root with a short description, under 'Projects'.
 * Each project should be a complete ReactQL project, and based on a recent kit (at the time of your PR.)
 * Projects can be based on the [Javascript](https://github.com/reactql/kit) or [Typescript](https://github.com/reactql/kit.ts) kits.
-* Each project should have its own `README.md`, describing the project and giving users any special installation or usage instructions.
+* Each project should have its own `README.md`, showing the version of the kit the project is based on, describing the project and giving users any special installation or usage instructions.
 * Must be [MIT](LICENSE) licensed.

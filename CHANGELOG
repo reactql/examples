@@ -1,5 +1,10 @@
 2017-06-02
 ------------------------------------------------------
+* Makes `no-graphql` todos reducer more concise
+* Fixes `no-graphql` README typo
+
+2017-06-02
+------------------------------------------------------
 * Adds `no-graphql` example
 
 2017-06-02
