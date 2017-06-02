@@ -20,6 +20,10 @@ Current example projects:
 
 Swaps out the [Graphcool](https://graph.cool) service for your own GraphQL server, running alongside the built-in Koa web server. Demonstrates a monolithic application, where the GraphQL endpoint 'lives' next to your front-end code.
 
+* ### [No GraphQL, Just Redux (no-graphql)](./no-graphql)
+
+ReactQL makes an awesome general purpose front-end, even if you're not using GraphQL. This example rips out GraphQL, and demos a simple to-do component that uses Redux stores to manage state globally.
+
 ## How to run
 
 Each project appears in its own folder.
