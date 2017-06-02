@@ -54,6 +54,10 @@ To run it locally after building, run `npm run static` (or combine the above two
 
 See the **[CLI tool](https://github.com/reactql/cli)** for easily deploying this starter kit on Mac, Windows or Linux.
 
+## PRs welcome!
+
+If you have your own examples to share, check out the [contribution guidelines](CONTRIBUTING.md).
+
 ## Need help?
 
 ### Complete documentation @ **https://reactql.org**
