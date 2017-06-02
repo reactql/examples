@@ -32,6 +32,6 @@ Then, run:
 
 `npm start`
 
-You can then navigate to [http://localhost:8080](http://localhost:8080) to see a hot-reloading browser version, [http://localhost:8081](http://localhost:8081) for a development web server with full [server-side rendering](https://reactql.org/docs/ssr), and [http://localhost:8081/graphql](http://localhost:8081/graphql) for the GraphiQL utility to test GraphQL queries.
+You can then navigate to [http://localhost:8080](http://localhost:8080) to see a hot-reloading browser version, [http://localhost:8081](http://localhost:8081) for a development web server with full [server-side rendering](https://reactql.org/docs/ssr).
 
 For more build options, see the [root examples README](https://github.com/reactql/examples)
