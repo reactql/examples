@@ -14,7 +14,3 @@ import {
 export const APOLLO = {
   uri: `http://${getServerHost()}:${getServerPort()}/graphql`,
 };
-
-export const BUNDLE_ANALYZER = {
-  openAnalyzer: false,
-};

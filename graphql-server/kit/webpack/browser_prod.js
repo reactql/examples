@@ -53,9 +53,6 @@ import { css, webpackProgress } from './common';
 // Our local path configuration, so webpack knows where everything is/goes
 import PATHS from '../../config/paths';
 
-// Project configuration to control build settings
-import { BUNDLE_ANALYZER } from '../../config/project';
-
 // ----------------------
 
 // The final CSS file will wind up in `dist/public/assets/css/style.[contenthash].css`
@@ -179,7 +176,7 @@ export default new WebpackConfig().extend({
     new BundleAnalyzerPlugin({
       analyzerMode: 'static',
       reportFilename: join(PATHS.dist, 'report.html'),
-      openAnalyzer: BUNDLE_ANALYZER.openAnalyzer,
+      openAnalyzer: false,
     }),
 
     // Copy files from `PATHS.static` to `dist/public`.  No transformations
