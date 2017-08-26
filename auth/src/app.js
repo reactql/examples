@@ -52,6 +52,12 @@ if (SERVER) {
   // session, JWT token, etc -- and the mutations we need to login
   config.setGraphQLSchema(require('src/graphql').default);
 
+  // Set-up CORS to allow credentials to be passed to origins outside of the
+  // server.  We'll need this in order to test this out in development on :8080
+  config.setCORSOptions({
+    credentials: true,
+  });
+
   /* MIDDLEWARE */
 
   // Add an `Authorization` parser that will store any passed JWT tokens in
