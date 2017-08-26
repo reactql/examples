@@ -1,3 +1,8 @@
+2017-08-26
+------------------------------------------------------
+* Removes existing 1.x examples; they're redundant with kit v2.x
+* Adds "Users, sessions and auth" sample to `auth`
+
 2017-06-17
 ------------------------------------------------------
 * Fixes `graphql-server` production build (closes #2)

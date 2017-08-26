@@ -2,6 +2,8 @@
 
 # ReactQL - example projects
 
+## New: Projects for kit v2.x!
+
 [ReactQL](https://github.com/reactql/cli) is a starter kit for building React + GraphQL front-ends.
 
 It comes in [Javascript](https://github.com/reactql/kit) and [Typescript](https://github.com/reactql/kit.ts) flavours, and has a [CLI tool](https://github.com/reactql/cli) for quickly spawning new projects on Windows, Mac or Linux.
@@ -16,13 +18,9 @@ This repo features a growing list of runnable examples to demonstrate how ReactQ
 
 Current example projects:
 
-* ### [GraphQL Server (graphql-server)](./graphql-server)
+* ### [Users, sessions and auth](./auth)
 
-Swaps out the [Graphcool](https://graph.cool) service for your own GraphQL server, running alongside the built-in Koa web server. Demonstrates a monolithic application, where the GraphQL endpoint 'lives' next to your front-end code.
-
-* ### [No GraphQL, Just Redux (no-graphql)](./no-graphql)
-
-ReactQL makes an awesome general purpose front-end, even if you're not using GraphQL. This example rips out GraphQL, and demos a simple to-do component that uses Redux stores to manage state globally.
+Build a monolithic GraphQL app that accepts user/passwords, validates against an in-memory SQLite DB, and returns a JWT via cookies and stored in the browser in `localStorage` for stateful and stateless future requests.
 
 ## How to run
 
@@ -43,16 +41,6 @@ Run:
 `npm run build-run`
 
 And navigate to [http://localhost:4000](http://localhost:4000)
-
-## To build a bundle you can host statically
-
-If you want to build any example and host it statically - say, via S3, Github pages, Netlify or anywhere else - you can build a static version by running:
-
-`npm run build`
-
-Then just copy over your `dist/public` folder to any host.
-
-To run it locally after building, run `npm run static` (or combine the above two commands with `npm run build-static-run`)
 
 ## Want to start your own project?
 
