@@ -82,7 +82,7 @@ if (SERVER) {
   // Get the server host/port, to register callbacks
   const { getServerURL } = require('kit/lib/env');
 
-  // Social logins.  In this example app, we'll use Facebook and Google, and
+  // Social logins.  In this example app, we'll use Facebook and
   // pull in the required Passport.js packages to set it up
   const passport = require('koa-passport');
   const FacebookStrategy = require('passport-facebook').Strategy;
@@ -130,7 +130,7 @@ if (SERVER) {
   // Add the Passport.js middleware
   config.addMiddleware(passport.initialize());
 
-  // Add the authorisation routes, for Facebook and Google
+  // Add the authorisation routes, for Facebook
   config.addGetRoute('/auth/facebook', passport.authenticate('facebook', {
     // Since we're not using sessions, turn `session` off
     session: false,
