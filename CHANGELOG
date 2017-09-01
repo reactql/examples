@@ -1,3 +1,11 @@
+2017-09-01
+------------------------------------------------------
+
+## Auth app
+* Replaces `sqlite3` 3.1.9 -> 3.1.8 per https://github.com/mapbox/node-sqlite3/issues/865
+* Adds `Passport.js` and Facebook login
+* Bumps kit to v2.7.0
+
 2017-08-26
 ------------------------------------------------------
 * Removes existing 1.x examples; they're redundant with kit v2.x

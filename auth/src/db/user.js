@@ -43,7 +43,7 @@ export const User = db.define('user', {
   },
   password: {
     type: Sequelize.TEXT,
-    allowNull: false,
+    allowNull: true,
   },
   firstName: {
     type: Sequelize.STRING,
@@ -106,6 +106,32 @@ export async function createUser(data) {
   return User.create({
     email: data.email,
     password: await generatePasswordHash(data.password),
+    firstName: data.firstName,
+    lastName: data.lastName,
+  });
+}
+
+// Function to create a user based on a social profile. In this function, we
+// will first check to see if the user already exists (based on an e-mail
+// address), and return that.  Otherwise, we'll create a new user. Note: with
+// this user type, password is null by default, so the user won't be able to
+// login via the traditional username + password
+export async function createUserFromSocial(data) {
+  // Check if we have an existing user
+  const existingUser = await User.findOne({
+    where: {
+      email: data.email,
+    },
+  });
+
+  if (existingUser) return existingUser;
+
+  // Nope -- let's create one
+
+  // All good - proceed
+  return User.create({
+    email: data.email,
+    password: null,
     firstName: data.firstName,
     lastName: data.lastName,
   });

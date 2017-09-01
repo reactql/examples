@@ -15,6 +15,7 @@ import { Grid } from 'semantic-ui-react';
 // Components
 import Header from './header';
 import Login from './login';
+import Social from './social';
 import User from './user';
 
 // Styles
@@ -26,6 +27,7 @@ export default () => (
   <Grid className={css.main} padded>
     <Header />
     <Login />
+    <Social />
     <User />
   </Grid>
 );

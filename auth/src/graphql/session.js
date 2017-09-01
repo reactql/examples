@@ -81,8 +81,7 @@ export const loginMutation = {
       // JWT -- store it on a cookie so that we can re-use it for future
       // requests to the server
       ctx.cookies.set('reactQLJWT', session.jwt(), {
-        httpOnly: false,
-        expires: new Date('2018-01-01'),
+        expires: session.expiresAt,
       });
 
       // Return the session record from the DB

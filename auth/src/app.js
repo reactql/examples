@@ -76,6 +76,97 @@ if (SERVER) {
     }
     return next();
   });
+
+  /* PASSPORT.JS */
+
+  // Get the server host/port, to register callbacks
+  const { getServerURL } = require('kit/lib/env');
+
+  // Social logins.  In this example app, we'll use Facebook and Google, and
+  // pull in the required Passport.js packages to set it up
+  const passport = require('koa-passport');
+  const FacebookStrategy = require('passport-facebook').Strategy;
+
+  // DB functions we'll need to handle login
+  const { createUserFromSocial } = require('src/db/user');
+  const { createSession } = require('src/db/session');
+
+  // Set-up Facebook login strategy using the sample credentials that are
+  // provided by Lee Benson's FB developer app account -- CHANGE THIS before
+  // using in production, or you'll hit rate limits!
+  passport.use(new FacebookStrategy(
+    {
+      clientID: '1822349178077971',
+      clientSecret: '1080c5f86936fe83da8d18a18b1c341a',
+      callbackURL: `${getServerURL()}/auth/facebook/callback/`,
+      // We only need certain fields from Facebook, so specify which here
+      profileFields: [
+        'id',
+        'email',
+        'first_name',
+        'last_name',
+      ],
+    },
+    // Callback function.  Use this to create the user if they don't already
+    // exist
+    async (token, tokenSecret, profile, done) => {
+      // Attempt to create a new user. If the user already exists, this will
+      // fail, so wrap this in a catch block (we can just log any failure)
+      let user = {};
+      try {
+        user = await createUserFromSocial({
+          email: profile.emails[0].value,
+          firstName: profile.name.givenName,
+          lastName: profile.name.familyName,
+        });
+      } catch (e) {
+        // eslint-disable-next-line
+        console.log('User error:', e);
+      }
+      done(null, user);
+    },
+  ));
+
+  // Add the Passport.js middleware
+  config.addMiddleware(passport.initialize());
+
+  // Add the authorisation routes, for Facebook and Google
+  config.addGetRoute('/auth/facebook', passport.authenticate('facebook', {
+    // Since we're not using sessions, turn `session` off
+    session: false,
+
+    // Get access to the fields we need
+    scope: [
+      'public_profile',
+      'email',
+    ],
+  }));
+
+  config.addGetRoute('/auth/facebook/callback', async (ctx, next) => (
+    // Since we need to attach a session to the user object here, we won't
+    // use Passport's default handling.  Instead, we'll set our own 'inner
+    // handler' and use that to attach a JWT to a new session we'll create
+    passport.authenticate('facebook', {
+      // In this simple example, we'll redirect all events back to the main
+      // page so that we can render the example
+      session: false,
+    }, async (e, user) => {
+      // Check that we have a valid user
+      if (user) {
+        // Create a new session related to our `user` object
+        const session = await createSession(user);
+
+        // Create a JWT token, and store it on our common cookie
+        ctx.cookies.set('reactQLJWT', session.jwt(), {
+          expires: session.expiresAt,
+        });
+      }
+
+      // Now redirect back to home, regardless -- if login was successful,
+      // the JWT will have been attached to the session
+      ctx.redirect('/');
+    })(ctx, next)
+  ));
 } else {
   /* BROWSER ONLY */
 

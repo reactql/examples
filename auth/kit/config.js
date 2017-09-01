@@ -86,6 +86,19 @@ if (SERVER) {
       // Create a set for routes -- to retrieve based on insertion order
       this.routes = new Set();
 
+      // Koa application function. But default, this is null
+      this.koaAppFunc = null;
+
+      // Flag for setting whether plain HTTP should be disabled
+      this.enableHTTP = true;
+
+      // Force SSL. Rewrites all non-SSL queries to SSL.  False, by default.
+      this.enableForceSSL = false;
+
+      // Options for enabling SSL. By default, this is null. If SSL is enabled
+      // in userland, this would instead hold an object of options
+      this.sslOptions = null;
+
       // Custom middleware -- again, based on insertion order
       this.middleware = new Set();
 
@@ -106,6 +119,35 @@ if (SERVER) {
     }
 
     /* WEB SERVER / SSR */
+
+    // Get access to Koa's `app` instance, for adding custom instantiation
+    // or doing something that's not covered by other functions
+    getKoaApp(func) {
+      this.koaAppFunc = func;
+    }
+
+    // Enable SSL. Normally, you'd use an upstream proxy like Nginx to handle
+    // SSL. But if you want to run a 'bare' Koa HTTPS web server, you can pass
+    // in the certificate details here and it'll respond to SSL requests
+    enableSSL(opt) {
+      // At a minimum, we should have `key` and `cert` -- check for those
+      if (typeof opt !== 'object' || !opt.key || !opt.cert) {
+        throw new Error('Cannot enable SSL. Missing `key` and/or `cert`');
+      }
+      this.sslOptions = opt;
+    }
+
+    // Force SSL. Rewrites all non-SSL queries to SSL. Any options here are
+    // passed to `koa-sslify`, the SSL enforcement middleware
+    forceSSL(opt = {}) {
+      this.enableForceSSL = opt;
+    }
+
+    // Disable plain HTTP.  Note this should only be used if you've also set
+    // `enableSSL()` and you don't want dual-HTTP+SSL config
+    disableHTTP() {
+      this.enableHTTP = false;
+    }
 
     // Disable the optional `koa-bodyparser`, to prevent POST data being sent to
     // each request.  By default, body parsing is enabled.
@@ -143,37 +185,37 @@ if (SERVER) {
     }
 
     // Adds a custom server route to attach to our Koa router
-    addRoute(method, route, handler) {
+    addRoute(method, route, ...handlers) {
       this.routes.add({
         method,
         route,
-        handler,
+        handlers,
       });
     }
 
     // Adds custom GET route
-    addGetRoute(route, handler) {
-      this.addRoute('get', route, handler);
+    addGetRoute(route, ...handlers) {
+      this.addRoute('get', route, ...handlers);
     }
 
     // Adds custom POST route
-    addPostRoute(route, handler) {
-      this.addRoute('post', route, handler);
+    addPostRoute(route, ...handlers) {
+      this.addRoute('post', route, ...handlers);
     }
 
     // Adds custom PUT route
-    addPutRoute(route, handler) {
-      this.addRoute('put', route, handler);
+    addPutRoute(route, ...handlers) {
+      this.addRoute('put', route, ...handlers);
     }
 
     // Adds custom PATCH route
-    addPatchRoute(route, handler) {
-      this.addRoute('patch', route, handler);
+    addPatchRoute(route, ...handlers) {
+      this.addRoute('patch', route, ...handlers);
     }
 
     // Adds custom DELETE route
-    addDeleteRoute(route, handler) {
-      this.addRoute('delete', route, handler);
+    addDeleteRoute(route, ...handlers) {
+      this.addRoute('delete', route, ...handlers);
     }
 
     // Set the GraphQL schema. This should only be called on the server, otherwise
